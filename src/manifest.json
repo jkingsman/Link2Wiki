@@ -1,0 +1,39 @@
+{
+    "manifest_version": 3,
+    "name": "Link2Wiki",
+    "short_name": "Link2Wiki",
+    "version": "0.1.0",
+    "description": "Add a link to Wikipedia at the top of the Google results page.",
+    "action": {
+        "default_title": "Link2Wiki",
+        "default_icon": {
+            "8": "img/logo8.png",
+            "16": "img/logo16.png",
+            "19": "img/logo19.png",
+            "24": "img/logo24.png",
+            "32": "img/logo32.png",
+            "64": "img/logo64.png",
+            "128": "img/logo128.png",
+            "256": "img/logo256.png",
+            "512": "img/logo512.png"
+        }
+    },
+    "author": "Jack Kingsman <jack.kingsman@gmail.com>",
+    "icons": {
+        "8": "img/logo8.png",
+        "16": "img/logo16.png",
+        "19": "img/logo19.png",
+        "24": "img/logo24.png",
+        "32": "img/logo32.png",
+        "64": "img/logo64.png",
+        "128": "img/logo128.png",
+        "256": "img/logo256.png",
+        "512": "img/logo512.png"
+    },
+    "content_scripts": [{
+        "matches": ["https://google.com/*", "https://www.google.com/*"],
+        "js": ["injector.js"],
+        "run_at": "document_idle",
+        "all_frames": true
+    }]
+}
