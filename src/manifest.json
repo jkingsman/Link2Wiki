@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "Link2Wiki",
     "short_name": "Link2Wiki",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "Add a link to Wikipedia at the top of the Google results page.",
     "action": {
         "default_title": "Link2Wiki",

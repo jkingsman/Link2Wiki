@@ -8,8 +8,6 @@
  */
 "use strict";
 
-let parentElem;
-
 function elementReady(selector) {
   // Function author: jwilson8767; https://gist.github.com/jwilson8767/db379026efcbd932f64382db4b02853e
   // MIT Licensed
@@ -57,7 +55,7 @@ function parseAndInjectAtTopOfElem(elem) {
     if (suggestion) {
       const suggestedLink = createWikiLinkElement(suggestion.textContent)
       suggestedLink.innerHTML = `'${suggestion.textContent}'`
-      console.log(suggestedLink.outerHTML)
+
       const joinerText = document.createElement('span');
       joinerText.innerHTML = ` (or suggested ${suggestedLink.outerHTML})`;
 
