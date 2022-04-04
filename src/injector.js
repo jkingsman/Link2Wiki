@@ -8,6 +8,8 @@
  */
 "use strict";
 
+let parentElem;
+
 function elementReady(selector) {
   // Function author: jwilson8767; https://gist.github.com/jwilson8767/db379026efcbd932f64382db4b02853e
   // MIT Licensed
@@ -34,17 +36,33 @@ function elementReady(selector) {
   });
 }
 
+function createWikiLinkElement(query) {
+  const a = document.createElement('a');
+  a.href = `https://en.wikipedia.org/w/index.php?search=${query}`;
+  a.target = '_blank';
+  a.rel = 'noreferrer noopener';
+  a.referrerpolicy = 'no-referrer';
+  return a;
+}
+
 function parseAndInjectAtTopOfElem(elem) {
+
   const query = (new URLSearchParams(window.location.search.slice(1))).get("q");
   if (query) {
-    const a = document.createElement('a');
-    a.href = `https://en.wikipedia.org/w/index.php?search=${query}`
-    a.innerHTML = '🔗 Wiki Link'
-    a.target = '_blank'
-    a.rel = 'noreferrer noopener'
-    a.referrerpolicy = 'no-referrer'
+    const mainLink = createWikiLinkElement(query)
+    mainLink.innerHTML = `🔗 '${query}' on Wikipedia`
+    elem.prepend(mainLink);
 
-    elem.prepend(a);
+    const suggestion = document.querySelector('b > i');
+    if (suggestion) {
+      const suggestedLink = createWikiLinkElement(suggestion.textContent)
+      suggestedLink.innerHTML = `'${suggestion.textContent}'`
+      console.log(suggestedLink.outerHTML)
+      const joinerText = document.createElement('span');
+      joinerText.innerHTML = ` (or suggested ${suggestedLink.outerHTML})`;
+
+      mainLink.after(joinerText);
+    }
   }
 }
 
