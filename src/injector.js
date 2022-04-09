@@ -51,10 +51,11 @@ function parseAndInjectAtTopOfElem(elem) {
     mainLink.innerHTML = `🔗 '${query}' on Wikipedia`
     elem.prepend(mainLink);
 
-    const suggestion = document.querySelector('b > i');
-    if (suggestion) {
-      const suggestedLink = createWikiLinkElement(suggestion.textContent)
-      suggestedLink.innerHTML = `'${suggestion.textContent}'`
+    const correction = document.querySelector('b > i');
+    if (correction) {
+      const fullSuggestedText = correction.closest("a").textContent;
+      const suggestedLink = createWikiLinkElement(fullSuggestedText)
+      suggestedLink.innerHTML = `'${fullSuggestedText}'`
 
       const joinerText = document.createElement('span');
       joinerText.innerHTML = ` (or suggested ${suggestedLink.outerHTML})`;
